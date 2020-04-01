@@ -15,11 +15,11 @@ colRestrains = []
 listNum = 0
 listRest = []
 
-def generateInt(low,up):
-    return random.randrange(low,up)
+def generateInt(rest):
+    return random.randrange(rest[0],rest[1])
 
-def generateString(min,max):
-    x = generateInt(min,max)
+def generateString(rest):
+    x = generateInt(rest)
     ret = ''.join(random.choice(string.ascii_lowercase) for x in range(x))
     return ret
 
@@ -28,9 +28,9 @@ def generateRegex(regex):
     return rstr.xeger(regex)
 
 
-def generateDate(low,up):
-    end = datetime.strptime(up, '%Y-%m-%d %H:%M')
-    start = datetime.strptime(low, '%Y-%m-%d %H:%M')
+def generateDate(rest):
+    end = datetime.strptime(rest[0], '%Y-%m-%d %H:%M')
+    start = datetime.strptime(rest[1], '%Y-%m-%d %H:%M')
 
     
     delta = end - start
@@ -44,13 +44,13 @@ def generateList(listType,rest,listNum):
     listLen = generateInt(listRest[listNum][0],listRest[listNum][1])
     if listType == "int":
         for i in range(listLen):
-            ret.append(generateInt(rest[0],rest[1]))
+            ret.append(generateInt(rest))
     elif listType == "string":
         for i in range(listLen):
-            ret.append(generateString(rest[0],rest[1]))
+            ret.append(generateString(rest))
     elif listType == "date":
         for i in range(listLen):
-            ret.append(generateDate(rest[0],rest[1]))
+            ret.append(generateDate(rest))
     elif listType == "regex":
         for i in range(listLen):
             ret.append(generateRegex(rest))
@@ -127,11 +127,11 @@ for n in range(times):
         elif colTypes[i] == "constant":
             line += colRestrains[i]
         elif colTypes[i] == "int":
-            line += str(generateInt(colRestrains[i][0],colRestrains[i][1]))
+            line += str(generateInt(colRestrains[i]))
         elif colTypes[i] == "string":
-            line += generateString(colRestrains[i][0],colRestrains[i][1])
+            line += generateString(colRestrains[i])
         elif colTypes[i] == "date":
-            line += generateDate(colRestrains[i][0],colRestrains[i][1])
+            line += generateDate(colRestrains[i])
         elif colTypes[i][:4] == "list":
             line += str(generateList(colTypes[i][5:],colRestrains[i],listNum))
             listNum += 1
