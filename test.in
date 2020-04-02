@@ -1,0 +1,46 @@
+test.txt
+,
+12
+1000
+real
+1
+12.41
+int
+12
+100
+string
+1
+10
+regex
+AFONSO[A-Za-z0-9]{3}|YO\d\d[A-D]
+sequence
+311
+constant
+CONST
+date
+2000-01-01 00:00
+2020-04-01 05:31
+list:int
+1
+10
+1
+100
+list:string
+1
+10
+1
+10
+list:regex
+1
+10
+[a-z]\d|\d[a-z]
+list:date
+1
+10
+2000-01-01 00:00
+2020-04-01 05:31
+list:real
+1
+10
+1
+31.32
